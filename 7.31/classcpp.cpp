@@ -49,7 +49,7 @@ int main()
 	fun.setAddress(12);
 	cout << fun.getAddress() << endl;
 	fun.setLength(123);
-	fun.setMoney(11);
+//	fun.setMoney(11);
 //	cout << fun.getsLength() << endl;
 	return 0; 
 }

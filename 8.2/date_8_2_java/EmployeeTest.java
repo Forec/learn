@@ -15,6 +15,6 @@ public class EmployeeTest {
 			e.raiseSalary(100);
 		for (Employee e:staff)
 			System.out.println("name="+e.getName()+",salary="+e.getSalary()+",hireDay="
-					+e.getHireDay());
+					+e.getHireDay()+",id="+e.getID());
 	}
 }

@@ -1,0 +1,229 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/31/2015  20:39:35  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\PROGRAM_DESIGN\KEIL\KEIL4_C51\C51\BIN\BL51.EXE STARTUP.obj, NUM.obj TO NUM RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  NUM.obj (NUM)
+  E:\PROGRAM_DESIGN\KEIL\KEIL4_C51\C51\LIB\C51S.LIB (?C?IMUL)
+  E:\PROGRAM_DESIGN\KEIL\KEIL4_C51\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  NUM (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000BH     UNIT         _DATA_GROUP_
+            IDATA   0013H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0155H     UNIT         ?PR?MAIN?NUM
+            CODE    0955H     0067H     UNIT         ?C?LIB_CODE
+            CODE    09BCH     002CH     UNIT         ?PR?_DELAY?NUM
+            CODE    09E8H     0012H     UNIT         ?CO?NUM
+            CODE    09FAH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   NUM (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?NUM
+
+?PR?MAIN?NUM                   0008H    000BH
+  +--> ?CO?NUM
+  +--> ?PR?_DELAY?NUM
+
+
+
+SYMBOL TABLE OF MODULE:  NUM (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:09FAH         SEGMENT       ?C_C51STARTUP
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/31/2015  20:39:35  PAGE 2
+
+
+  I:0013H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:09FDH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:09FAH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:09FAH         LINE#         133
+  C:09FCH         LINE#         134
+  C:09FDH         LINE#         135
+  C:09FEH         LINE#         136
+  C:0A00H         LINE#         185
+  C:0A03H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        NUM
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  C:09D0H         PUBLIC        _delay
+  C:09E8H         PUBLIC        LedChar
+  D:00B8H         PUBLIC        IP
+  C:0800H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  B:00A0H.6       PUBLIC        du
+  C:09F2H         PUBLIC        Position
+  B:00A0H.7       PUBLIC        we
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          L?0025
+  -------         ENDPROC       L?0025
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/31/2015  20:39:35  PAGE 3
+
+
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        k
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        sor
+  -------         ENDDO         
+  C:09D0H         LINE#         14
+  C:09D0H         LINE#         15
+  C:09D2H         LINE#         16
+  C:09D2H         LINE#         17
+  C:09DEH         LINE#         18
+  C:09E7H         LINE#         19
+  -------         ENDPROC       _DELAY
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        cnt
+  D:000AH         SYMBOL        intervals
+  D:000CH         SYMBOL        sec
+  D:000EH         SYMBOL        ops
+  D:0003H         SYMBOL        i
+  D:000FH         SYMBOL        base
+  D:0002H         SYMBOL        j
+  D:0011H         SYMBOL        temp
+  -------         ENDDO         
+  C:0800H         LINE#         21
+  C:0800H         LINE#         22
+  C:0805H         LINE#         23
+  C:080AH         LINE#         24
+  C:080EH         LINE#         25
+  C:0810H         LINE#         26
+  C:0811H         LINE#         27
+  C:0816H         LINE#         29
+  C:0817H         LINE#         30
+  C:081BH         LINE#         32
+  C:081DH         LINE#         33
+  C:0823H         LINE#         34
+  C:0825H         LINE#         35
+  C:0827H         LINE#         36
+  C:082FH         LINE#         37
+  C:0831H         LINE#         38
+  C:0834H         LINE#         39
+  C:0837H         LINE#         40
+  C:083AH         LINE#         41
+  C:083CH         LINE#         42
+  C:083CH         LINE#         43
+  C:083FH         LINE#         44
+  C:0847H         LINE#         45
+  C:0849H         LINE#         46
+  C:084CH         LINE#         47
+  C:084FH         LINE#         48
+  C:085AH         LINE#         49
+  C:0862H         LINE#         50
+  C:0874H         LINE#         51
+  C:0876H         LINE#         52
+  C:0885H         LINE#         53
+  C:0885H         LINE#         54
+  C:088AH         LINE#         55
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/31/2015  20:39:35  PAGE 4
+
+
+  C:088AH         LINE#         56
+  C:0890H         LINE#         59
+  C:0898H         LINE#         60
+  C:089EH         LINE#         61
+  C:08A4H         LINE#         62
+  C:08B0H         LINE#         63
+  C:08C2H         LINE#         64
+  C:08C2H         LINE#         65
+  C:08C4H         LINE#         66
+  C:08C7H         LINE#         67
+  C:08C9H         LINE#         68
+  C:08CBH         LINE#         69
+  C:08CEH         LINE#         70
+  C:08D0H         LINE#         71
+  C:08D2H         LINE#         73
+  C:08EBH         LINE#         74
+  C:08EDH         LINE#         75
+  C:08EFH         LINE#         76
+  C:08F2H         LINE#         77
+  C:08F4H         LINE#         78
+  C:08F7H         LINE#         79
+  C:08F9H         LINE#         80
+  C:0907H         LINE#         81
+  C:091DH         LINE#         83
+  C:092FH         LINE#         84
+  C:0931H         LINE#         85
+  C:094EH         LINE#         86
+  C:0951H         LINE#         87
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        NUM
+
+  -------         MODULE        ?C?IMUL
+  C:0955H         PUBLIC        ?C?IMUL
+  -------         ENDMOD        ?C?IMUL
+
+  -------         MODULE        ?C?UIDIV
+  C:0967H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 01A2H BYTE (20%) *
+******************************************************************************
+
+Program Size: data=20.0 xdata=0 code=521
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

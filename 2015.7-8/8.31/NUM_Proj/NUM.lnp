@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"NUM.obj" 
+TO "NUM" 
+RAMSIZE(256) 

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "main/_macros.html" as macros %}
+{% block title %}{{ user.username }}-Profile{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+  <img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=256) }}">
+  <div class="profile-header">
+  <h1>{{ user.username }}</h1>
+  <p>
+	Name: {% if user.name %}{{ user.name }}{% else %}Anonymous{% endif %}
+  </p>
+  <p>
+	From: {% if user.location %}From <a href="http://map.baidu.com/?q={{ user.location }}">{{ user.location }}</a>{% else %}Unknown{% endif %}
+  </p>
+  {% if current_user.is_administrator() %}
+  <p>Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+  {% endif %}
+  <p>About:
+	{% if user.about_me %}{{ user.about_me }}{% else %}The user is a little lazy, nothing left here...{% endif %}
+  </p>
+  <p>
+	Member since {{ moment(user.member_since).format('L') }}.
+	Last seen {{ moment(user.last_seen).fromNow() }}.
+  </p>
+   <p>
+    {% if user == current_user %}
+    <a class="btn btn-default" href="{{ url_for('main.edit_profile') }}">Edit Profile</a>
+    {% endif %}
+   {% if current_user.is_administrator() %}
+   <a class="btn btn-danger" style="margin-left: 10px" href="{{ url_for('main.edit_profile_admin', id=user.id) }}"> Edit Profile[Admin] </a>
+   {% endif %}
+	{% if current_user.can(Permission.FOLLOW) and user!= current_user %}
+	{% if not current_user.is_following(user) %}
+	<a href="{{ url_for('main.follow', username=user.username) }}"
+	   class="btn btn-primary">Follow</a>
+	{% else %}
+	<a href="{{ url_for('main.unfollow', username=user.username) }}"
+	   class="btn btn-default">Unfollow</a>
+	{% endif %}
+	{% endif %}
+	<a href="{{ url_for('main.followers', username= user.username) }}" style="margin-left: 10px">
+	  Followers: <span class="badge">{{ user.followers.count()-1 }}</span>
+	</a>
+	<a href="{{ url_for('main.followed_by', username=user.username) }}">
+	  Following: <span class="badge">{{ user.followed.count()-1 }}</span>
+	</a>
+	{% if current_user.is_authenticated and user != current_user and user.is_following(current_user) %}
+	<span class="label label-default">Follows you</span>
+	{% endif %}
+	</p>
+</div>
+<h3>Posts by {{ user.username }}</h3>
+{% include 'main/post.html' %}
+{% if pagination %}
+<div class="pagination">
+  {{ macros.pagination_widget(pagination, 'main.index') }}
+</div>
+{% endif %}
+
+{% endblock %}

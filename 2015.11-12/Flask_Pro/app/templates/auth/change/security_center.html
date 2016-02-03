@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Security Center{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+  <h2>Security Center</h2>
+</div>
+<div class="col-md-4">
+  <p>Change Password? <a href="{{ url_for('auth.change_password') }}">Click here!</a></p>
+  </br>
+  <p>Change Email Address? <a href="{{ url_for('auth.change_email') }}">Click here!</a></p>
+</div>
+{% endblock %}

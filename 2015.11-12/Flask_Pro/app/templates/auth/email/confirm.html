@@ -1,0 +1,10 @@
+<p>Dear {{ user.username }},</p>
+<p>Welcome to <b>Forec's test website</b>!</p>
+<p>To confirm your account please <a href="{{ url_for('auth.confirm', token=token, _external=True) }}">click here</a>.</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{ url_for('auth.confirm', token=token, _external=True) }}</p>
+<p>The link above is valid in an hour, once you miss the period, you need to ask us to resend you a confirm email. To resend, went to our page and login, you will see that button.</p>
+<p>However, if you didn't register in our website, please just ignore this mail.</p>
+<p>Sincerely,</p>
+<p>Forec</p>
+<p><small>Note: replies to this email address are not monitored.</small></p>

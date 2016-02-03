@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Delete Confirm{% endblock %}
+
+{% block page_content %}
+<div>
+  <h1>Delete Confirmation</h1>
+</div>
+<div>
+  {{ wtf.quick_form(form) }}
+</div>
+</br>
+<div>
+  <a class="btn btn-danger" href="{{ url_for('main.delete_post_confirm',id=post.id) }}">Delete</a>
+  <a class="btn btn-default" style="margin-left:15px" href="{{ url_for('main.post',id=post.id) }}">Cancel</a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+{% endblock %}
+

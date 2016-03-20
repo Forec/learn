@@ -1,0 +1,4 @@
+(define (plus a b)
+  (if (= a 0)
+	  b
+	  (plus (dec a) (inc b))))

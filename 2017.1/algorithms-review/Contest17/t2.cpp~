@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+class Solution {
+public:
+    int findPosisonedDuration(vector<int>& timeSeries, int duration) {
+        if (timeSeries.size() == 0)
+			return 0;
+		int maxTP = timeSeries[0] + duration, ans = duration;
+		for (int i = 1; i < timeSeries.size(); i++){
+			if (timeSeries[i] - timeSeries[i-1] >= duration){
+				ans += duration;
+			} else {
+				int targetTP = timeSeries[i-1] + duration;
+				if (targetTP > maxTP){
+					maxTP = targetTP;
+					ans += targetTP - maxTP;
+				} else {
+					maxTP = targetTP;
+				}
+			}
+		}
+    }
+};

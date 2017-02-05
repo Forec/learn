@@ -6,7 +6,7 @@ class Config:
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     FLASKY_MAIL_SUBJECT_PREFIX = '[Forec]'
-    FLASKY_MAIL_SENDER = '284103820@qq.com' # 'Forec <forec@bupt.edu.cn>'
+    FLASKY_MAIL_SENDER = '' # 'Forec <forec@bupt.edu.cn>'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN') or 'forec@bupt.edu.cn'
     FLASKY_POSTS_PER_PAGE = 20
     FLASKY_FOLLOWERS_PER_PAGE = 20
@@ -21,25 +21,25 @@ class DevelopmentConfig(Config):
     MAIL_SERVER = 'smtp.qq.com'
     MAIL_PORT = 25
 #    MAIL_USE_TLS = True
-    MAIL_USERNAME = '284103820@qq.com'#os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = 'Freedom2016' #os.environ.get('MAIL_PASSWORD') or 
+    MAIL_USERNAME = ''#os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = '' #os.environ.get('MAIL_PASSWORD') or 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-      'mysql://forec:VKDARK@localhost/webdb'
+      ''
 
 class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
-      'mysql://forec:VKDARK@localhost/webdb'
+      ''
 
 class ProductionConfig(Config):
     DEBUG = False
     MAIL_SERVER = 'smtp.qq.com'
     MAIL_PORT = 25
 #    MAIL_USE_TLS = True
-    MAIL_USERNAME = '284103820@qq.com'#os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = 'Freedom2016' #os.environ.get('MAIL_PASSWORD') or 
+    MAIL_USERNAME = ''#os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = '' #os.environ.get('MAIL_PASSWORD') or 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-      'mysql://forec:VKDARK@localhost/webdb'
+      ''
 
 config = {
     'development' : DevelopmentConfig,

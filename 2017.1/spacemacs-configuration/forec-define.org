@@ -1,0 +1,111 @@
+* 个人配置
+** 始终显示行号（不开启）
+   #+BEGIN_SRC emacs-lisp
+;;(global-linum-mode 1)
+   #+END_SRC
+
+** 设置 js2-mode 缩进大小
+   #+BEGIN_SRC emacs-lisp
+(setq-default js2-basic-offset 2)
+(setq-default js-indent-level 2)
+   #+END_SRC
+
+** 关闭全局 flycheck-mode
+   #+BEGIN_SRC emacs-lisp
+(setq global-flycheck-mode -1)
+   #+END_SRC 
+
+** 设置 Org 模式语法高亮
+   #+BEGIN_SRC emacs-lisp
+(setq org-src-fontify-natively t)
+   #+END_SRC
+
+** 设置选中后再写覆盖
+   #+BEGIN_SRC emacs-lisp
+(delete-selection-mode t)
+   #+END_SRC
+
+** Windows 下 M-w 按键冲突，将复制设置为 M-p
+   #+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-p") 'kill-ring-save)
+   #+END_SRC
+
+** Windows 下 C-SPC 按键冲突，将 Mark set 设置为 C-*
+   #+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-*") 'set-mark-command)
+   #+END_SRC
+
+** 当前行高亮
+   #+BEGIN_SRC emacs-lisp
+(global-hl-line-mode t)
+(setq global-hl-line-highlight t)
+   #+END_SRC
+
+** 取消创建备份文件
+   #+BEGIN_SRC emacs-lisp
+(setq make-backup-files nil)
+   #+END_SRC
+
+** 取消自动保存文件
+   #+BEGIN_SRC emacs-lisp
+(setq auto-save-default nil)
+   #+END_SRC
+
+** 设置最近打开列表，使用 C-x G 打开
+   #+BEGIN_SRC emacs-lisp
+(setq recentf-max-menu-items 10)
+(global-set-key "\C-x\ G" 'recentf-open-files)
+   #+END_SRC
+
+** 设置日程安排文件所在目录及快捷键(如果开启了Org-install会有问题)
+   #+BEGIN_SRC emacs-lisp
+(setq org-agenda-files '("e:/Forec/Documents/"))
+(global-set-key (kbd "<f2> d") 'org-agenda)
+(defun open-my-todolist ()
+  (interactive)
+  (find-file "e:/Forec/Documents/TODO.org"))
+(global-set-key (kbd "<f2> e") 'open-my-todolist)
+   #+END_SRC
+
+** 一键关闭 flyspell 和 flycheck
+   #+BEGIN_SRC emacs-lisp
+(defun close-spell-and-check()
+  (interactive)
+  (flycheck-mode -1)
+  (flyspell-mode -1))
+(global-set-key (kbd "<f2> i") 'close-spell-and-check)
+   #+END_SRC
+
+** 取消 Flyspell 对各模式的钩子
+   #+BEGIN_SRC emacs-lisp
+  (remove-hook 'message-mode-hook 'enable-flyspell-mode)
+  (remove-hook 'lisp-mode-hook 'enable-flyspell-mode)
+  (remove-hook 'emacs-lisp-mode-hook 'enable-flyspell-mode)
+  (remove-hook 'text-mode-hook 'enable-flyspell-mode)
+  (remove-hook 'markdown-mode-hook 'enable-flyspell-mode)
+   #+END_SRC
+
+** 设置 Aspell
+   #+BEGIN_SRC emacs-lisp
+(setq-default ispell-program-name "aspell")
+(ispell-change-dictionary "american" t)
+   #+END_SRC
+
+** 定义格式化整个buffer函数
+   #+BEGIN_SRC emacs-lisp
+(defun indent-buffer()
+  (interactive)
+  (indent-region (point-min) (point-max)))
+   #+END_SRC
+
+** 取消 dired mode 下总是创建新 buffer
+   #+BEGIN_SRC emacs-lisp
+  (put 'dired-find-alternate-file 'disabled nil)
+  (with-eval-after-load 'dired
+   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
+   #+END_SRC
+
+** 提供 forec-define
+#+BEGIN_SRC emacs-lisp
+(provide 'forec-define)
+#+END_SRC

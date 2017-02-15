@@ -15,6 +15,11 @@
 (setq global-flycheck-mode -1)
    #+END_SRC 
 
+** 设置 customize-group 的配置文件
+#+BEGIN_SRC emacs-lisp
+(setq custom-file (expand-file-name "custom.el" "~/emacs-conf/"))
+(load custom-file 'no-error 'no-message)
+#+END_SRC
 ** 设置 Org 模式语法高亮
    #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
@@ -79,6 +84,7 @@
 ** 取消 Flyspell 对各模式的钩子
    #+BEGIN_SRC emacs-lisp
   (remove-hook 'message-mode-hook 'enable-flyspell-mode)
+  (remove-hook 'haskell-mode-hook 'enable-flyspell-mode)
   (remove-hook 'lisp-mode-hook 'enable-flyspell-mode)
   (remove-hook 'emacs-lisp-mode-hook 'enable-flyspell-mode)
   (remove-hook 'text-mode-hook 'enable-flyspell-mode)
@@ -105,6 +111,76 @@
    (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
    #+END_SRC
 
+** 取消引号在部分模式下的自动补全
+#+BEGIN_SRC emacs-lisp
+(sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
+#+END_SRC
+** 设置光标在括号中时显式两侧括号（未开启）
+#+BEGIN_SRC emacs-lisp
+;; (define-advice show-paren-function (:around (fn) fix-show-paren-function)
+;;  "Hightlight enclosing parens."
+;;  (cond ((looking-at-p "\\s(") (funcall fn))
+;;        (t (save-excursion
+;;            (ignore-errors (backward-up-list))
+;;            (funcall fn)))))
+#+END_SRC
+** 隐藏/删除 DOS 系统下的换行符
+#+BEGIN_SRC emacs-lisp
+(defun hidden-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+(defun remove-dos-eol ()
+  "Replace DOS eoles CR LF with Unix eolns CR"
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\r" nil t) (replace-match "")))
+#+END_SRC
+** 设置 Web-mode 下的缩进长度（未开启）
+#+BEGIN_SRC emacs-lisp
+(defun web-mode-indent-setup ()
+  (interactive)
+  (setq web-mode-markup-indent-offset 2) ;; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset 2)    ;; web-mode, css in html file
+  (setq web-mode-code-indent-offset 2)   ;; web-mode, js code in html file
+)
+;;(add-hook 'web-mode-hook 'web-mode-indent-setup)
+#+END_SRC
+** 设置 occur 在选中的情况下自动填充
+#+BEGIN_SRC emacs-lisp
+(defun occur-dwin ()
+  "Call `occur` with a same default."
+  (interactive)
+  (push (if (region-active-p)
+            (buffer-substring-no-properties
+             (region-beginning)
+             (region-end))
+            (let ((sym (thing-at-point 'symbol)))
+              (when (stringp sym)
+                (regexp-quoto sym))))
+           regexp-history)
+  (call-interactively 'occur))
+(global-set-key (kbd "M-s o") 'occur-dwin)
+#+END_SRC
+** 设置 Racket-mode 的 Racket.exe 和 Raco.exe 可执行路径
+#+BEGIN_SRC emacs-lisp
+(setq racket-racket-program "e:/Program_Design/Racket/Racket.exe")
+(setq racket-raco-program "e:/Program_Design/Racket/raco.exe")
+#+END_SRC
+** 主要快捷键设置
+*** 设置 M-s i 调出 imenu
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-s i") 'imenu)
+#+END_SRC
+*** 设置 C-= 扩充选中的 region
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-=") 'er/expand-region)
+#+END_SRC
+*** 设置 C-` 使用 Iedit-mode（通常 M-s o 调出 occur 后使用）
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-`") 'iedit-mode)
+#+END_SRC
 ** 提供 forec-define
 #+BEGIN_SRC emacs-lisp
 (provide 'forec-define)

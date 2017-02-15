@@ -2,7 +2,7 @@
 
 module H2Lang
 (   Exp (..)
-  , r2
+  , h2
   , runTests
 ) where
 
@@ -79,19 +79,19 @@ calc "<=" (String' v1') (String' v2') = Boolean (v1' <= v2')
 calc ">=" (String' v1') (String' v2') = Boolean (v1' >= v2')
 calc _ _ _ = Error "syntax error"             
 
-r2 :: Exp -> Exp
-r2 = flip interp []
+h2 :: Exp -> Exp
+h2 = flip interp []
 
 tests :: [Exp]
-tests = [r2 (Let (Param "x") (Value 2) 
+tests = [h2 (Let (Param "x") (Value 2) 
               (Let (Param "f") (Lambda (Param "y") (Op "*" (Param "x") (Param "y")))
                 (Let (Param "x") (Value 4)
                   (Call (Param "f") (Value 3))))),
-         r2 (Let (Param "x") (Value 3.9) (Op "/" (Param "x") (Value 4.32))),
-         r2 (Let (Param "x") (Value 8.75) (Op ">=" (Param "x") (Value 7))),
-         r2 (Op "==" (Boolean True) (Boolean False)),
-         r2 (Op "++" (String' "test") (String' " case")),
-         r2 (If (Op ">=" (Value 2.3) (Value (-2.754))) (String' "Yes") (String' "No"))
+         h2 (Let (Param "x") (Value 3.9) (Op "/" (Param "x") (Value 4.32))),
+         h2 (Let (Param "x") (Value 8.75) (Op ">=" (Param "x") (Value 7))),
+         h2 (Op "==" (Boolean True) (Boolean False)),
+         h2 (Op "++" (String' "test") (String' " case")),
+         h2 (If (Op ">=" (Value 2.3) (Value (-2.754))) (String' "Yes") (String' "No"))
         ]
 run :: [Exp] -> IO ()
 run [] = return ()

@@ -8,3 +8,4 @@
 * Practise for Python in 2015.9
 * My solutions for LeetCode in 2017.2
 * My configuration for Spacemacs
+* Simple interpreter in Haskell

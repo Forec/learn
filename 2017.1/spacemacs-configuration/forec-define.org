@@ -111,9 +111,9 @@
    (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
    #+END_SRC
 
-** 取消引号在部分模式下的自动补全
+** 取消引号在部分模式下的自动补全（报错，未开启）
 #+BEGIN_SRC emacs-lisp
-(sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
+;;(sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
 #+END_SRC
 ** 设置光标在括号中时显式两侧括号（未开启）
 #+BEGIN_SRC emacs-lisp

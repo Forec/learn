@@ -10,3 +10,4 @@
 * My solutions for LeetCode in 2017.2
 * My configuration for Spacemacs
 * Simple interpreter in Haskell
+* Boolean interpreter in C++

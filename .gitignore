@@ -1,4 +1,5 @@
 *.exe
+t
 *.*~
 test.el
 __pycache__

@@ -12,3 +12,4 @@
 * Simple interpreter in Haskell
 * Boolean interpreter in C++
 * Parallel Programming for Haskell
+* Solutions and codes for CSAPP(v3) since 2017.8

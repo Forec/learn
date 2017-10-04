@@ -48,7 +48,7 @@ int main() {
     }
     PyObject * pDict = PyModule_GetDict(pModule);
 
-    PyObject * pParams = PyTuple_New(2);   // 以元组传递参数
+    PyObject * pParams = PyTuple_New(2);   // Use tuple to pass parameters
     // CPP call Python function "mul"
     PyObject * pMul = PyDict_GetItemString(pDict, "mul");
     PyTuple_SetItem(pParams, 0, PyInt_FromLong(6));
@@ -61,6 +61,15 @@ int main() {
     PyTuple_SetItem(pParams, 0, PyString_FromString("this is a test string"));
     PyTuple_SetItem(pParams, 1, PyInt_FromLong(4));
     PyObject * pIgnore = PyObject_CallObject(pPstr, pParams);
+
+    Py_XDECREF(pIgnore);
+    Py_XDECREF(pPstr);
+    Py_XDECREF(pResult);
+    Py_XDECREF(pMul);
+    Py_XDECREF(pParams);
+    // Py_XDECREF(pDict); 
+    Py_XDECREF(pModule);
+    Py_XDECREF(pName);
 
     Py_Finalize();
     return 0;

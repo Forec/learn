@@ -14,3 +14,4 @@
 * Parallel Programming for Haskell
 * Solutions and codes for CSAPP(v3) since 2017.8
 * Practice for Scala in 2017.8
+* Codes when reading GSAP

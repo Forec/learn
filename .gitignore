@@ -4,6 +4,7 @@
 .s
 .fse
 *.exe
+*.pyc
 t
 *.*~
 test.el

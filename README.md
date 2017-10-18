@@ -8,6 +8,7 @@
 * Practice for Python in 2015.9
 * Practice for Tensor Flow in 2017.2
 * My solutions for LeetCode in 2017.2
+* Examples and some notes for TensorFlow in 2017.10
 * My configuration for Spacemacs
 * Simple interpreter in Haskell
 * Boolean interpreter in C++
@@ -15,3 +16,4 @@
 * Solutions and codes for CSAPP(v3) since 2017.8
 * Practice for Scala in 2017.8
 * Codes when reading GSAP
+
